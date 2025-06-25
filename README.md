@@ -1,70 +1,288 @@
-# Getting Started with Create React App
+# Safe-Space Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+**Safe-Space** is a full-stack blog application where users can create, edit, and manage blog posts. The frontend is built with React and communicates with a Flask backend using RESTful APIs. It offers user registration, login, blog management, and profile management, with secure authentication via JSON Web Tokens (JWT).
 
-In the project directory, you can run:
+This single-page application is designed to be responsive, accessible, and user-friendly.
 
-### `npm start`
+---
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **Authentication**: Register and log in securely using JWT.
+* **Blog Management**: Create, view, edit, and manage blogs.
+* **Profile Page**: View user details and blogs.
+* **Client-Side Routing**: Navigation via React Router.
+* **Form Validation**: Robust validation using Formik and Yup.
+* **Responsive Design**: Fully responsive layout with accessible styling.
+* **Backend Integration**: Fetch and manipulate data via RESTful API.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **React**: Building the user interface.
+* **React Router v6**: Client-side routing.
+* **Formik**: Form state and validation handling.
+* **Yup**: Schema-based validation for forms.
+* **CSS**: Styling and responsiveness.
+* **Fetch API**: Communication with Flask backend.
+* **Create React App**: React project scaffolding.
+* **Node.js & NPM**: Dependency management and local server.
+* **Flask** (Backend): For user authentication and data persistence.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup Instructions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Node.js (v14+)
+* NPM (comes with Node.js)
+* Git
+* Flask backend running at `http://localhost:5555`
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Clone the Repository**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git@github.com:Jjumaaa/Safe-Space-Frontend.git
+cd Safe-Space-Frontend
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Install Dependencies**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+3. **Run the Application**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The app will run at `http://localhost:3000`. Ensure the Flask backend is also running for full functionality.
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Structure
 
-### Analyzing the Bundle Size
+```
+frontend/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── Navbar.js
+│   │   ├── LoginForm.js
+│   │   ├── RegisterForm.js
+│   │   ├── BlogList.js
+│   │   ├── BlogForm.js
+│   │   └── Profile.js
+│   ├── pages/
+│   │   ├── Home.js
+│   │   ├── BlogCreate.js
+│   │   └── ProfilePage.js
+│   ├── styles/
+│   │   ├── App.css
+│   │   ├── Navbar.css
+│   │   ├── Form.css
+│   │   ├── Blog.css
+│   │   └── Profile.css
+│   ├── App.js
+│   └── index.js
+├── package.json
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## API Documentation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The frontend connects to the Flask backend via the following endpoints (base URL: `http://localhost:5555`).
 
-### Advanced Configuration
+### Authentication Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### `POST /register`
 
-### Deployment
+Register a new user.
+**Request Body:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```json
+{
+  "username": "string",
+  "email": "string",
+  "password": "string"
+}
+```
 
-### `npm run build` fails to minify
+**Response:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```json
+{
+  "id": number,
+  "username": "string",
+  "email": "string"
+}
+```
+
+#### `POST /login`
+
+Log in and receive a JWT token.
+**Request Body:**
+
+```json
+{
+  "username": "string",
+  "password": "string"
+}
+```
+
+**Response:**
+
+```json
+{
+  "access_token": "string"
+}
+```
+
+#### `GET /me`
+
+Retrieve authenticated user profile.
+**Headers:**
+
+```
+Authorization: Bearer <token>
+```
+
+**Response:**
+
+```json
+{
+  "id": number,
+  "username": "string",
+  "email": "string"
+}
+```
+
+---
+
+### Blog Routes
+
+#### `GET /blogs`
+
+Fetch all blog posts.
+**Response:**
+
+```json
+[
+  {
+    "id": number,
+    "title": "string",
+    "bio": "string",
+    "image_url": "string",
+    "user_id": number,
+    "created_at": "string"
+  }
+]
+```
+
+#### `POST /blogs`
+
+Create a new blog post.
+**Headers:**
+
+```
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+
+```json
+{
+  "title": "string",
+  "bio": "string",
+  "image_url": "string"
+}
+```
+
+**Response:**
+
+```json
+{
+  "id": number,
+  "title": "string",
+  "bio": "string",
+  "image_url": "string",
+  "user_id": number,
+  "created_at": "string"
+}
+```
+
+#### `PATCH /blogs/<id>`
+
+Update a blog post (must be the owner).
+**Headers:**
+
+```
+Authorization: Bearer <token>
+```
+
+**Request Body:**
+
+```json
+{
+  "title": "string",
+  "bio": "string",
+  "image_url": "string"
+}
+```
+
+#### `GET /users/<id>/blogs`
+
+Fetch all blogs by a specific user.
+**Response:**
+
+```json
+[
+  {
+    "id": number,
+    "title": "string",
+    "bio": "string",
+    "image_url": "string",
+    "user_id": number,
+    "created_at": "string"
+  }
+]
+```
+
+---
+
+## Deployment
+
+To deploy the frontend to a service like Vercel:
+
+1. Push the code to a GitHub repository.
+2. Go to [vercel.com](https://vercel.com) and connect your GitHub repo.
+3. Set the build command to:
+
+   ```
+   npm run build
+   ```
+4. Set the output directory to:
+
+   ```
+   build
+   ```
+5. Update all `fetch` URLs in your frontend to point to the deployed backend API On Render or another hosting service.
+
+---
+
+## Notes
+
+* Ensure the Flask backend is running before starting the React app.
+* JWT tokens are stored in `localStorage` for authentication.
+* Update API base URLs when deploying the frontend and backend.
+
+---
