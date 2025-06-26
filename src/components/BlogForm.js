@@ -13,7 +13,6 @@ const BlogForm = ({ blogId }) => {
   });
   const navigate = useNavigate();
 
-  const BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (blogId) {
