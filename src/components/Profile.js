@@ -25,7 +25,7 @@ const Profile = () => {
         const userData = await userResponse.json();
         if (!userResponse.ok) throw new Error(userData.message || 'Failed to fetch profile');
 
-        const blogsResponse = await fetch(`http://localhost:5555/users/${userData.id}/blogs`);
+        const blogsResponse = await fetch(`https://safe-space-group-project-backend-5.onrender.com/users/${userData.id}/blogs`);
         const blogsData = await blogsResponse.json();
         if (!blogsResponse.ok) throw new Error('Failed to fetch blogs');
 
