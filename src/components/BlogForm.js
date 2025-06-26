@@ -13,7 +13,6 @@ const BlogForm = ({ blogId }) => {
   });
   const navigate = useNavigate();
 
-  const BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (blogId) {
@@ -51,8 +50,8 @@ const BlogForm = ({ blogId }) => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const url = blogId
-        ? `http://localhost:5555/blogs/${blogId}`
-        : 'http://localhost:5555/blogs';
+        ? `https://safe-space-group-project-backend-5.onrender.com/blogs/${blogId}`
+        : 'https://safe-space-group-project-backend-5.onrender.com/blogs';
       const method = blogId ? 'PATCH' : 'POST';
       const response = await fetch(url, {
         method,
