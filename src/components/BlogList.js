@@ -7,10 +7,12 @@ const BlogList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // const BASE_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:5555/blogs');
+        const response = await fetch(`https://safe-space-group-project-backend-5.onrender.com/blogs`);
         const data = await response.json();
         if (response.ok) {
           setBlogs(data);

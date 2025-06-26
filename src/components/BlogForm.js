@@ -13,11 +13,13 @@ const BlogForm = ({ blogId }) => {
   });
   const navigate = useNavigate();
 
+  const BASE_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     if (blogId) {
       const fetchBlog = async () => {
         try {
-          const response = await fetch(`http://localhost:5555/blogs/${blogId}`, {
+          const response = await fetch(`https://safe-space-group-project-backend-5.onrender.com/blogId`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },

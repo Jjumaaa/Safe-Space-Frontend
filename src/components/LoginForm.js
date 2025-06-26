@@ -12,10 +12,12 @@ const LoginForm = () => {
     username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required'),
   });
+  const BASE_URL = process.env.REACT_APP_API_URL;
+
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await fetch('http://localhost:5555/login', {
+      const response = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
