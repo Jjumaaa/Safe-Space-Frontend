@@ -50,7 +50,7 @@ const BlogForm = ({ blogId }) => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const url = blogId
-        ? `http://localhost:5555/blogs/${blogId}`
+        ? `https://safe-space-group-project-backend-5.onrender.com/blogs/${blogId}`
         : 'https://safe-space-group-project-backend-5.onrender.com/blogs';
       const method = blogId ? 'PATCH' : 'POST';
       const response = await fetch(url, {
