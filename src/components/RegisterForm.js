@@ -15,10 +15,11 @@ const RegisterForm = () => {
       .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
   });
+  // const BASE_URL = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await fetch('http://localhost:5555/register', {
+      const response = await fetch(`https://safe-space-group-project-backend-5.onrender.com/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),

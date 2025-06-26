@@ -17,7 +17,9 @@ const Profile = () => {
           navigate('/');
           return;
         }
-        const userResponse = await fetch('http://localhost:5555/me', {
+
+        const BASE_URL = process.env.REACT_APP_API_URL;
+        const userResponse = await fetch(`https://safe-space-group-project-backend-5.onrender.com/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const userData = await userResponse.json();
