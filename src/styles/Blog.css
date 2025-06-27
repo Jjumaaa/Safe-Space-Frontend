@@ -1,39 +1,65 @@
 .blog-list {
-  margin-top: 20px;
+  margin-top: 30px;
+}
+
+.blog-list h2 {
+  font-size: 2em;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .blog-card {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 15px;
-  margin-bottom: 15px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .blog-card img {
   max-width: 100%;
   height: auto;
-  border-radius: 5px;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 .blog-card h3 {
+  font-size: 1.5em;
+  color: #2c3e50;
   margin: 10px 0;
 }
 
 .blog-card p {
-  color: #555;
+  color: #5f6f81;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
 .blog-card a {
-  color: #333;
+  color: #4a90e2;
   text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .blog-card a:hover {
+  color: #357abd;
   text-decoration: underline;
 }
 
 @media (max-width: 600px) {
   .blog-card {
-    padding: 10px;
+    padding: 15px;
+  }
+
+  .blog-list h2 {
+    font-size: 1.8em;
   }
 }

@@ -2,16 +2,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  padding: 10px 20px;
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  padding: 15px 30px;
   color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar-brand a {
   color: white;
   text-decoration: none;
-  font-size: 1.5em;
-  font-weight: bold;
+  font-size: 1.8em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease;
+}
+
+.navbar-brand a:hover {
+  transform: scale(1.05);
 }
 
 .navbar-links {
@@ -22,7 +33,7 @@
 }
 
 .navbar-links li {
-  margin-left: 20px;
+  margin-left: 25px;
 }
 
 .navbar-links a,
@@ -32,26 +43,40 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1.1em;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .navbar-links a:hover,
 .navbar-links button:hover {
-  text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+    padding: 15px 20px;
   }
 
   .navbar-links {
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 15px;
+    width: 100%;
   }
 
   .navbar-links li {
     margin: 10px 0;
+  }
+
+  .navbar-links a,
+  .navbar-links button {
+    display: block;
+    width: 100%;
+    text-align: left;
   }
 }
