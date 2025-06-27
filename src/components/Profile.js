@@ -18,24 +18,29 @@ const Profile = () => {
           return;
         }
 
-        
-        const userResponse = await fetch(`https://safe-space-group-project-backend-5.onrender.com/me`, {
+        const baseURL = 'https://safe-space-group-project-backend-5.onrender.com';
+
+        const userResponse = await fetch(`${baseURL}/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+
         const userData = await userResponse.json();
         if (!userResponse.ok) throw new Error(userData.message || 'Failed to fetch profile');
 
-        const blogsResponse = await fetch(`http://localhost:5555/users/${userData.id}/blogs`);
+        if (!userData.id) throw new Error('Invalid user data');
+
+        const blogsResponse = await fetch(`${baseURL}/users/${userData.id}/blogs`);
         const blogsData = await blogsResponse.json();
         if (!blogsResponse.ok) throw new Error('Failed to fetch blogs');
 
         setUser(userData);
         setBlogs(blogsData);
+        setLoading(false);
       } catch (err) {
         setError(err.message);
         if (err.message.includes('Unauthorized')) navigate('/');
+        else setLoading(false);
       }
-      setLoading(false);
     };
     fetchProfile();
   }, [navigate]);
@@ -46,7 +51,7 @@ const Profile = () => {
   return (
     <div className="profile">
       <h2>{user?.username}'s Profile</h2>
-      <p>Email: {user?.email || 'N/A'}</p>
+      <p>Email: {user?.email ?? 'N/A'}</p>
       <h3>Your Blogs</h3>
       {blogs.length === 0 ? (
         <p>No blogs yet.</p>

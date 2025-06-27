@@ -12,7 +12,7 @@ const LoginForm = () => {
     username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required'),
   });
-  const BASE_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = 'https://safe-space-group-project-backend-5.onrender.com';
 
 
   const handleSubmit = async (values, { setSubmitting }) => {
